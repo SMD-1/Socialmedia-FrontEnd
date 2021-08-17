@@ -1,0 +1,81 @@
+.post {
+  width: 100%;
+  margin: 25px 0;
+  border-radius: 10px;
+  box-shadow: 5px 5px 5px rgb(182, 181, 181, 0.2),
+    inset 5px 5px 5px rgb(216, 240, 255, 0.51);
+}
+.postWrapper {
+  padding: 20px 0;
+  width: 90%;
+  margin: 0 auto;
+}
+.postTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.postTopLeft {
+  display: flex;
+  align-items: center;
+}
+.postTopLeft img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 15px;
+}
+.postUserName {
+  font-weight: bold;
+  display: flex;
+  flex-direction: column;
+}
+.postDate {
+  font-weight: 600;
+  margin-top: 5px;
+  font-size: 11px;
+}
+.postTopIcon {
+  cursor: pointer;
+}
+.postHr {
+  margin: 10px 0;
+  background: rgba(231, 230, 230, 0.87);
+}
+.postCenter {
+  width: 90%;
+  margin: 0 auto;
+  height: 465px;
+}
+.caption p {
+  width: 100%;
+  margin-bottom: 10px;
+  font-size: 1rem;
+  font-weight: 600;
+}
+.postCenter img {
+  border-radius: 10px;
+  width: 100%;
+  height: calc(100% - 30px);
+  object-fit: contain;
+  background: rgb(51, 50, 50);
+}
+.postBottom {
+  width: 90%;
+  margin: 5px auto;
+  display: flex;
+  justify-content: space-between;
+}
+.postBottomLeft {
+  display: flex;
+  align-items: center;
+}
+.postBottomIcon {
+  cursor: pointer;
+  font-size: 1.5rem;
+  margin-right: 10px;
+}
+.postComment {
+  margin-right: 10px;
+}

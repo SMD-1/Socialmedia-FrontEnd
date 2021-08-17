@@ -1,0 +1,29 @@
+.rightbarFriend {
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
+}
+.rightbarProfileContainer {
+  position: relative;
+}
+.rightbarProfileContainer img {
+  width: 3rem;
+  height: 3rem;
+  object-fit: cover;
+  border-radius: 50%;
+}
+.rightbarOnline {
+  width: 0.9rem;
+  height: 0.9rem;
+  border-radius: 50%;
+  background: green;
+  position: absolute;
+  bottom: 5px;
+  right: -1px;
+  border: 2px solid #fff;
+}
+.rightbarFriendName {
+  margin-left: 15px;
+  font-size: medium;
+  font-weight: 500;
+}

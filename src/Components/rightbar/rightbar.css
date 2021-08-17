@@ -1,0 +1,39 @@
+.rightbar {
+  display: flex;
+  flex: 3;
+  overflow-y: scroll;
+  height: calc(100vh - 60px);
+}
+.rightbarWrapper {
+  width: 100%;
+  padding: 20px 10px;
+}
+.bithdayContainer {
+  display: flex;
+  align-items: center;
+}
+.rightbarIcon {
+  margin-right: 10px;
+}
+.birthdayText {
+  font-weight: 300;
+  font-size: 15px;
+}
+.sponsors {
+  width: 80%;
+  margin: 30px auto;
+}
+.sponsors img {
+  border-radius: 10px;
+  width: 100%;
+  height: 100%;
+}
+.rightbarTitle {
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+.rightbarFriendList {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
