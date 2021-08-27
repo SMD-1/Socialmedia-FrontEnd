@@ -10,6 +10,7 @@
   top: 0;
   padding: 10px;
   color: aliceblue;
+  z-index: 10;
 }
 .logo {
   font-size: 2rem;

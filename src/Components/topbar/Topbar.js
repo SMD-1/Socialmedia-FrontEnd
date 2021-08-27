@@ -10,7 +10,7 @@ const Topbar = () => {
       <div className="topbarCenter">
         <input
           type="text"
-          placeholder="Search for friends or posts"
+          placeholder="Search for friends, posts"
           className="searchInput"
         />
         <MaterialIcon.MdSearch size="1.5rem" style={{ marginLeft: "10px" }} />

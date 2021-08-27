@@ -1,8 +1,8 @@
 .rightbar {
-  display: flex;
+  /* display: flex; */
   flex: 3;
-  overflow-y: scroll;
-  height: calc(100vh - 60px);
+  /* overflow-y: scroll; */
+  /* height: calc(100vh - 60px); */
 }
 .rightbarWrapper {
   width: 100%;
@@ -29,7 +29,7 @@
   height: 100%;
 }
 .rightbarTitle {
-  font-weight: bold;
+  font-weight: 500;
   margin-bottom: 15px;
 }
 .rightbarFriendList {
