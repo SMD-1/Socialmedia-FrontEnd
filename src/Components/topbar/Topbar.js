@@ -1,11 +1,14 @@
 import "./topbar.css";
 import * as MaterialIcon from "react-icons/md";
+import { Link } from "react-router-dom";
 
 const Topbar = () => {
   return (
     <div className="topbarContainer">
       <div className="topbarLeft">
-        <span className="logo">Lets Chat</span>
+        <Link to="/">
+          <span className="logo">Lets Chat</span>
+        </Link>
       </div>
       <div className="topbarCenter">
         <input
@@ -17,9 +20,11 @@ const Topbar = () => {
       </div>
       <div className="topbarRight">
         <div className="topbarLinks">
-          <span className="topbarLink" style={{ margin: "0 10px" }}>
-            Home
-          </span>
+          <Link to="/">
+            <span className="topbarLink" style={{ margin: "0 10px" }}>
+              Home
+            </span>
+          </Link>
           <span className="topbarLink" style={{ margin: "0 10px" }}>
             Timeline
           </span>
@@ -38,11 +43,13 @@ const Topbar = () => {
             <span className="topbarIconBadge">1</span>
           </div>
         </div>
-        <img
-          src="/assets/images/user3.jpg"
-          alt="profile"
-          className="topbarImg"
-        />
+        <Link to="/profile">
+          <img
+            src="/assets/images/user3.jpg"
+            alt="profile"
+            className="topbarImg"
+          />
+        </Link>
       </div>
     </div>
   );
