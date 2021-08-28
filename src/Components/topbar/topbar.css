@@ -17,6 +17,7 @@
   font-weight: 600;
   cursor: pointer;
   color: #fff;
+  text-decoration: none;
 }
 .topbarCenter {
   display: flex;
@@ -68,9 +69,9 @@
   cursor: pointer;
 }
 Link {
-  text-decoration: none;
 }
 .topbarLink {
+  text-decoration: none;
   color: #fff;
 }
 
