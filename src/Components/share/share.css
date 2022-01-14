@@ -1,6 +1,5 @@
 .share {
   width: 100%;
-  height: 135px;
   border-radius: 10px;
   box-shadow: 5px 5px 5px rgb(182 181 181 / 20%),
     inset 5px 5px 5px rgb(216 240 255 / 51%);
@@ -67,4 +66,29 @@
   border-radius: 5px;
   color: #fff;
   cursor: pointer;
+}
+.shareImgContainre {
+  padding: 0px 20px 10px 20px;
+  position: relative;
+}
+.shareImg {
+  width: 100%;
+  object-fit: cover;
+}
+.shareCancel {
+  position: absolute;
+  top: 0;
+  right: 20px;
+  cursor: pointer;
+  border: 1px solid #000;
+  border-radius: 50%;
+  width: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 25px;
+}
+.shareCancel:hover {
+  color: #fff;
+  background: #4f46e5;
 }

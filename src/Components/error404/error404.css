@@ -1,0 +1,13 @@
+.errorContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+.errorContainer > h1 {
+  font-size: 3rem;
+}
+.errorContainer > p {
+  font-size: 1rem;
+  margin-left: 1rem;
+}

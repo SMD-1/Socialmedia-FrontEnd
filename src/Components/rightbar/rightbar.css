@@ -37,3 +37,16 @@
   margin: 0;
   list-style: none;
 }
+.rigthBarFollowingName {
+  text-align: center;
+  margin: 5px 0;
+  color: black;
+  font-weight: 600;
+}
+.rightBarFollowButton {
+  margin: 25px 0 15px;
+  padding: 5px 8px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
