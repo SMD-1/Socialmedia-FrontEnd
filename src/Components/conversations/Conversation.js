@@ -12,14 +12,14 @@ const Conversation = ({ conversation, currentUser }) => {
       try {
         const res = await axios("/users?userId=" + friendId);
         setUser(res.data);
-        // console.log("user", res.data);
+        console.log("user", res.data);
       } catch (err) {
         console.log(err.message);
       }
     };
     getUser();
   }, [currentUser, conversation]);
-  console.log("user", user);
+  // console.log("user", user);
   return (
     <div className="conversation">
       <img
@@ -31,7 +31,7 @@ const Conversation = ({ conversation, currentUser }) => {
         className="conversationImg"
         alt="userImage"
       />
-      <span className="conversationName">{user.username}</span>
+      <span className="conversationName">{user?.username}</span>
     </div>
   );
 };

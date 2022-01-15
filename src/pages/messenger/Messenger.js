@@ -10,7 +10,7 @@ import { AuthContext } from "../../context/AuthContext";
 const Messenger = () => {
   const [conversations, setConversations] = useState([]);
   const [currentChat, setCurrentChat] = useState(null);
-  const [messages, setMessages] = useState(null);
+  const [messages, setMessages] = useState([]);
   const { user } = useContext(AuthContext);
   useEffect(() => {
     const getConversations = async () => {
@@ -25,7 +25,21 @@ const Messenger = () => {
     getConversations();
   }, [user._id]);
   // console.log(user);
-  console.log("conversations", conversations);
+  useEffect(() => {
+    const getMessages = async () => {
+      try {
+        const res = await axios.get("/messages/" + currentChat?._id);
+        setMessages(res.data);
+        console.log("messages", res.data);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    getMessages();
+  }, [currentChat]);
+  // console.log("conversations", conversations);
+  console.log("currentChat", currentChat);
+  // console.log("messages", messages);
   return (
     <>
       <Topbar />
@@ -33,9 +47,13 @@ const Messenger = () => {
         <div className="chatMenu">
           <div className="chatMenuWrapper">
             <input placeholder="Search for friends" className="chatMenuInput" />
-            {conversations.map((c) => (
-              <Conversation conversation={c} key={c._id} currentUser={user} />
-            ))}
+            {conversations.map((c) => {
+              return (
+                <div onClick={() => setCurrentChat(c)} key={c._id}>
+                  <Conversation conversation={c} currentUser={user} />
+                </div>
+              );
+            })}
           </div>
         </div>
         <div className="chatBox">
@@ -43,11 +61,13 @@ const Messenger = () => {
             {currentChat ? (
               <>
                 <div className="chatBoxTop">
-                  <Message />
-                  <Message own={true} />
-                  <Message />
-                  <Message />
-                  <Message own={true} />
+                  {messages.map((m) => (
+                    <Message
+                      message={m}
+                      own={m.sender === user._id}
+                      key={m._id}
+                    />
+                  ))}
                 </div>
                 <div className="chatBoxBottom">
                   <textarea
