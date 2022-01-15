@@ -6,7 +6,7 @@ import { AuthContext } from "../../context/AuthContext";
 
 const Topbar = () => {
   const { user } = useContext(AuthContext);
-  console.log("topbar", user);
+  // console.log("topbar", user);
   const PF = process.env.REACT_APP_PUBLIC_FOLDER;
   return (
     <div className="topbarContainer">
@@ -39,10 +39,12 @@ const Topbar = () => {
             <MaterialIcon.MdPerson size="1.7rem" />
             <span className="topbarIconBadge">1</span>
           </div>
-          <div className="topbarIconItem">
-            <MaterialIcon.MdChat size="1.7rem" />
-            <span className="topbarIconBadge">2</span>
-          </div>
+          <Link to="/messenger">
+            <div className="topbarIconItem">
+              <MaterialIcon.MdChat size="1.7rem" />
+              <span className="topbarIconBadge">2</span>
+            </div>
+          </Link>
           <div className="topbarIconItem">
             <MaterialIcon.MdNotificationsActive size="1.7rem" />
             <span className="topbarIconBadge">1</span>

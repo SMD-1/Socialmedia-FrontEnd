@@ -13,6 +13,7 @@ const Message = ({ message, own }) => {
         />
         <p className="messageText">{message.text}</p>
       </div>
+      <p style={{ fontSize: "10px" }}>{own ? "You" : "Friend"}</p>
       <div className="messageBottom">{format(message.createdAt)}</div>
     </div>
   );

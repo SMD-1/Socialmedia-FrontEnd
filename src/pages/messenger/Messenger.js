@@ -4,7 +4,7 @@ import Conversation from "../../Components/conversations/Conversation";
 import Message from "../../Components/message/Message";
 import ChatOnline from "../../Components/chatOnline/ChatOnline";
 import "./messenger.css";
-import { useContext, useState, useEffect } from "react";
+import { useContext, useState, useEffect, useRef } from "react";
 import { AuthContext } from "../../context/AuthContext";
 
 const Messenger = () => {
@@ -13,10 +13,12 @@ const Messenger = () => {
   const [messages, setMessages] = useState([]);
   const [newMessage, setNewMessage] = useState("");
   const { user } = useContext(AuthContext);
+  const scrollRef = useRef();
+
   const sendMessage = async (e) => {
     e.preventDefault();
     const message = {
-      converesationId: currentChat._id,
+      conversationId: currentChat._id,
       sender: user._id,
       text: newMessage,
     };
@@ -29,6 +31,7 @@ const Messenger = () => {
     }
     console.log("new message", message);
   };
+
   useEffect(() => {
     const getConversations = async () => {
       try {
@@ -42,6 +45,7 @@ const Messenger = () => {
     getConversations();
   }, [user._id]);
   // console.log(user);
+
   useEffect(() => {
     const getMessages = async () => {
       try {
@@ -54,6 +58,10 @@ const Messenger = () => {
     };
     getMessages();
   }, [currentChat]);
+
+  useEffect(() => {
+    scrollRef.current?.scrollIntoView({ behaviour: "smooth" });
+  }, [messages]);
   // console.log("conversations", conversations);
   // console.log("currentChat", currentChat);
   // console.log("messages", messages);
@@ -79,11 +87,9 @@ const Messenger = () => {
               <>
                 <div className="chatBoxTop">
                   {messages.map((m) => (
-                    <Message
-                      message={m}
-                      own={m.sender === user._id}
-                      key={m._id}
-                    />
+                    <div key={m._id} ref={scrollRef}>
+                      <Message message={m} own={m.sender === user._id} />
+                    </div>
                   ))}
                 </div>
                 <div className="chatBoxBottom">

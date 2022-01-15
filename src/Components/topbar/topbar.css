@@ -40,6 +40,8 @@
   margin: 0 10px;
   cursor: pointer;
   position: relative;
+  text-decoration: none;
+  color: white;
 }
 .topbarIconBadge {
   display: flex;
