@@ -11,7 +11,24 @@ const Messenger = () => {
   const [conversations, setConversations] = useState([]);
   const [currentChat, setCurrentChat] = useState(null);
   const [messages, setMessages] = useState([]);
+  const [newMessage, setNewMessage] = useState("");
   const { user } = useContext(AuthContext);
+  const sendMessage = async (e) => {
+    e.preventDefault();
+    const message = {
+      converesationId: currentChat._id,
+      sender: user._id,
+      text: newMessage,
+    };
+    try {
+      const res = await axios.post("/messages", message);
+      setMessages([...messages, res.data]);
+      setNewMessage("");
+    } catch (err) {
+      console.log(err);
+    }
+    console.log("new message", message);
+  };
   useEffect(() => {
     const getConversations = async () => {
       try {
@@ -38,7 +55,7 @@ const Messenger = () => {
     getMessages();
   }, [currentChat]);
   // console.log("conversations", conversations);
-  console.log("currentChat", currentChat);
+  // console.log("currentChat", currentChat);
   // console.log("messages", messages);
   return (
     <>
@@ -73,8 +90,12 @@ const Messenger = () => {
                   <textarea
                     placeholder="Type your message here"
                     className="chatMessageInput"
+                    onChange={(e) => setNewMessage(e.target.value)}
+                    value={newMessage}
                   ></textarea>
-                  <button className="chatSubmitBtn">Send</button>
+                  <button className="chatSubmitBtn" onClick={sendMessage}>
+                    Send
+                  </button>
                 </div>
               </>
             ) : (
