@@ -1,18 +1,52 @@
 import "./chatOnline.css";
-const ChatOnline = () => {
+import { useState, useEffect } from "react";
+import axios from "axios";
+
+const ChatOnline = ({ onlineUsers, currentUser, setCurrentChat }) => {
+  const PF = process.env.REACT_APP_PUBLIC_FOLDER;
+  const [friends, setFriends] = useState([]);
+  const [onlineFriends, setOnlineFriends] = useState([]);
+  useEffect(() => {
+    const getFriends = async () => {
+      const res = await axios.get("/users/friends/" + currentUser);
+      setFriends(res.data);
+    };
+    getFriends();
+  }, [currentUser]);
+  // console.log(friends);
+  useEffect(() => {
+    setOnlineFriends(friends.filter((f) => onlineUsers.includes(f._id)));
+  }, [friends, onlineUsers]);
+  // console.log("onlineUsers", onlineUsers);
+  const handleClick = async (user) => {
+    try {
+      const res = await axios.get(
+        `/conversations/find/${currentUser}/${user._id}`
+      );
+      setCurrentChat(res.data);
+    } catch (err) {
+      console.log(err);
+    }
+  };
   return (
     <div className="chatOnline">
-      <div className="chatOnlineFriend">
-        <div className="chatOnlineImgContainer">
-          <img
-            src="./assets/person/user2.jpg"
-            alt="user"
-            className="chatOnlineImg"
-          />
-          <div className="chatOnlineBadge"></div>
+      {onlineFriends.map((online) => (
+        <div className="chatOnlineFriend" onClick={() => handleClick(online)}>
+          <div className="chatOnlineImgContainer">
+            <img
+              src={
+                online?.profilePicture
+                  ? PF + online.profilePicture
+                  : PF + "person/user.png"
+              }
+              alt="user"
+              className="chatOnlineImg"
+            />
+            <div className="chatOnlineBadge"></div>
+          </div>
+          <span className="chatOnlineName">{online.username}</span>
         </div>
-        <span className="chatOnlineName">John Doe</span>
-      </div>
+      ))}
     </div>
   );
 };
