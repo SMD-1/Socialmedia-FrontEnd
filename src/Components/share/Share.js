@@ -1,4 +1,5 @@
 import axios from "axios";
+import { prefix } from "../../apiconfig";
 import { useContext, useRef, useState } from "react";
 import * as MaterialIcon from "react-icons/md";
 import { AuthContext } from "../../context/AuthContext";
@@ -25,7 +26,7 @@ const Share = () => {
       newPost.img = fileName;
       console.log("New Post", newPost);
       try {
-        const res = await axios.post("/upload", formData);
+        const res = await axios.post(prefix + "upload", formData);
         console.log(res);
       } catch (err) {
         console.log(err);
@@ -33,7 +34,7 @@ const Share = () => {
     }
 
     try {
-      await axios.post("/posts", newPost);
+      await axios.post(prefix + "posts", newPost);
       window.location.reload();
     } catch (err) {
       console.log(err);

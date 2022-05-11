@@ -1,4 +1,5 @@
 import axios from "axios";
+import { prefix } from "../../apiconfig";
 import { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 import { MdCake } from "react-icons/md";
@@ -20,7 +21,7 @@ const Rightbar = ({ user }) => {
   useEffect(() => {
     const getFriends = async () => {
       try {
-        const friendList = await axios.get("/users/friends/" + user._id);
+        const friendList = await axios.get(prefix + "users/friends/" + user._id);
         setFriends(friendList.data);
       } catch (err) {
         console.log(err);
@@ -32,12 +33,12 @@ const Rightbar = ({ user }) => {
   const clickHandler = async () => {
     try {
       if (Followed) {
-        await axios.put(`/users/${user._id}/unfollow`, {
+        await axios.put(`${prefix}users/${user._id}/unfollow`, {
           userId: currentUser._id,
         });
         dispatch({ type: "UNFOLLOW", payload: user._id });
       } else {
-        await axios.put(`/users/${user._id}/follow`, {
+        await axios.put(`${prefix}users/${user._id}/follow`, {
           userId: currentUser._id,
         });
         dispatch({ type: "FOLLOW", payload: user._id });

@@ -1,5 +1,6 @@
 import { useState, useEffect, useContext } from "react";
 import axios from "axios";
+import {prefix} from '../../apiconfig.js'
 import * as MaterialIcon from "react-icons/md";
 import { format } from "timeago.js";
 import { Link } from "react-router-dom";
@@ -20,7 +21,7 @@ const Post = ({ post }) => {
   // console.log(user.usernam);
   useEffect(() => {
     const fetchUser = async () => {
-      const res = await axios.get(`/users?userId=${post.userId}`);
+      const res = await axios.get(`${prefix}users?userId=${post.userId}`);
       console.log("👽", post.userId);
       // console.log("user: ", res);
       setUser(res.data);
@@ -29,7 +30,7 @@ const Post = ({ post }) => {
   }, [post.userId]);
   const likeHandler = () => {
     try {
-      axios.put("/posts/" + post._id + "/like", { userId: currentUser._id });
+      axios.put(prefix + "posts/" + post._id + "/like", { userId: currentUser._id });
     } catch (err) {
       console.log(err);
     }

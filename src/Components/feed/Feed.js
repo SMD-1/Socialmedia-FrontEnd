@@ -1,4 +1,5 @@
 import axios from "axios";
+import { prefix } from "../../apiconfig";
 import "./feed.css";
 import { useState, useEffect, useContext } from "react";
 import Share from "../share/Share";
@@ -12,8 +13,8 @@ const Feed = ({ username }) => {
   useEffect(() => {
     const fetchPost = async () => {
       const res = username
-        ? await axios.get("/posts/profile/" + username)
-        : await axios.get("posts/timeline/" + user._id);
+        ? await axios.get(prefix + "posts/profile/" + username)
+        : await axios.get(prefix + "posts/timeline/" + user._id);
       // console.log("Feed", res.data);
       setPosts(
         res.data.sort((post1, post2) => {

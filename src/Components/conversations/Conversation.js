@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { prefix } from "../../apiconfig";
 import "./conversation.css";
 
 const Conversation = ({ conversation, currentUser }) => {
@@ -10,7 +11,7 @@ const Conversation = ({ conversation, currentUser }) => {
     console.log("friend", friendId);
     const getUser = async () => {
       try {
-        const res = await axios("/users?userId=" + friendId);
+        const res = await axios(prefix + "users?userId=" + friendId);
         setUser(res.data);
         console.log("user", res.data);
       } catch (err) {

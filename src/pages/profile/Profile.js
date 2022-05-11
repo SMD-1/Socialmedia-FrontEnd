@@ -5,6 +5,7 @@ import Feed from "../../Components/feed/Feed";
 import "./profile.css";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { prefix } from "../../apiconfig";
 import { useParams } from "react-router";
 
 const Profile = () => {
@@ -15,7 +16,7 @@ const Profile = () => {
 
   useEffect(() => {
     const fetchUser = async () => {
-      const res = await axios.get(`/users?username=${username}`);
+      const res = await axios.get(`${prefix}users?username=${username}`);
       setUser(res.data);
       // console.log("user in profile: ", res.data);
     };

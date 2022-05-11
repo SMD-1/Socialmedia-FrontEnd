@@ -1,4 +1,5 @@
 import axios from "axios";
+import { prefix } from "../../apiconfig";
 import Topbar from "../../Components/topbar/Topbar";
 import Conversation from "../../Components/conversations/Conversation";
 import Message from "../../Components/message/Message";
@@ -74,7 +75,7 @@ const Messenger = () => {
   useEffect(() => {
     const getConversations = async () => {
       try {
-        const res = await axios.get("/conversations/" + user._id);
+        const res = await axios.get(prefix + "conversations/" + user._id);
         // console.log("res", res.data);
         setConversations(res.data);
       } catch (err) {
@@ -88,7 +89,7 @@ const Messenger = () => {
   useEffect(() => {
     const getMessages = async () => {
       try {
-        const res = await axios.get("/messages/" + currentChat?._id);
+        const res = await axios.get(prefix + "messages/" + currentChat?._id);
         setMessages(res.data);
         console.log("messages", res.data);
       } catch (err) {
