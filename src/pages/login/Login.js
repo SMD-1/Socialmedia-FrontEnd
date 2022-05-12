@@ -7,7 +7,7 @@ const Login = () => {
   // here we can also use useState
   const email = useRef();
   const password = useRef();
-  const { user, isFetching, error, dispatch } = useContext(AuthContext);
+  const { user, isFetching, dispatch } = useContext(AuthContext);
 
   const submitHandler = (e) => {
     e.preventDefault();
