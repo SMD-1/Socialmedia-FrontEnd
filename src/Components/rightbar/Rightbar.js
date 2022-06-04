@@ -11,37 +11,40 @@ import "./rightbar.css";
 
 const Rightbar = ({ user }) => {
   const PF = process.env.REACT_APP_PUBLIC_FOLDER;
-  const [freinds, setFriends] = useState([]);
+  const [friends, setFriends] = useState([]);
   const { user: currentUser, dispatch } = useContext(AuthContext);
   const [Followed, setFollowed] = useState(
     currentUser.followings.includes(user?.id)
   );
-  console.log(Followed);
+  console.log("Followed", user ? user.username : " ");
 
   useEffect(() => {
     const getFriends = async () => {
       try {
-        const friendList = await axios.get(prefix + "users/friends/" + user._id);
+        const friendList = await axios.get(
+          prefix + "users/friends/" + currentUser._id
+        );
+        console.log("Friend List", friendList.data);
         setFriends(friendList.data);
       } catch (err) {
-        console.log(err);
+        console.log(err.message);
       }
     };
     getFriends();
-  }, [user]);
+  }, [currentUser]);
 
   const clickHandler = async () => {
     try {
       if (Followed) {
-        await axios.put(`${prefix}users/${user._id}/unfollow`, {
+        await axios.put(`${prefix}users/${currentUser._id}/unfollow`, {
           userId: currentUser._id,
         });
-        dispatch({ type: "UNFOLLOW", payload: user._id });
+        dispatch({ type: "UNFOLLOW", payload: currentUser._id });
       } else {
-        await axios.put(`${prefix}users/${user._id}/follow`, {
+        await axios.put(`${prefix}users/${currentUser._id}/follow`, {
           userId: currentUser._id,
         });
-        dispatch({ type: "FOLLOW", payload: user._id });
+        dispatch({ type: "FOLLOW", payload: currentUser._id });
       }
     } catch (err) {
       console.log(err);
@@ -100,11 +103,12 @@ const Rightbar = ({ user }) => {
           </div>
         </div>
         <h4 className="rightBarTitle">User Friends</h4>
-        <div className="rightBarFollowings">
-          {freinds.map((friend) => (
+        <div className="rightBarFollowings" style={{ border: "2px solid red" }}>
+          {friends.map((friend, index) => (
             <Link
               to={`/profile/${friend.username}`}
               style={{ textDecoration: "none" }}
+              key={index}
             >
               <div className="rightBarFollowing">
                 <img

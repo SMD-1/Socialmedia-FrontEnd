@@ -41,7 +41,7 @@ const Share = () => {
     }
   };
 
-  console.log("share", user);
+  // console.log("share", user);
   return (
     <div className="share">
       <div className="shareWrapper">
