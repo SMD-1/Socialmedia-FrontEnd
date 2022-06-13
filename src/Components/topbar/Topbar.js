@@ -1,10 +1,28 @@
 import "./topbar.css";
 import * as MaterialIcon from "react-icons/md";
 import { Link } from "react-router-dom";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../context/AuthContext";
+import { prefix } from "../../apiconfig";
+import axios from "axios";
 
 const Topbar = () => {
+  const [query, setQuery] = useState("")
+  const [allUsers, setAllUsers] = useState([]);
+  console.log(allUsers)
+  console.log(query);
+  // const PF = process.env.REACT_APP_PUBLIC_FOLDER;
+  useEffect(() => {
+    const getUsers = async () => {
+      try {
+        const result = await axios.get(`${prefix}allUsers`)
+        setAllUsers(result.data)
+      } catch (err) {
+        console.log(err)
+      }
+    }
+    getUsers()
+  }, [query])
   const { user } = useContext(AuthContext);
   // console.log("topbar", user);
   const PF = process.env.REACT_APP_PUBLIC_FOLDER;
@@ -20,19 +38,41 @@ const Topbar = () => {
           type="text"
           placeholder="Search for friends, posts"
           className="searchInput"
+          onChange={e => setQuery(e.target.value)}
         />
         <MaterialIcon.MdSearch size="1.5rem" style={{ marginLeft: "10px" }} />
+        {
+          query &&
+          <ul>
+            {
+              allUsers.filter(user => user.username.toLowerCase().includes(query)).map((user) => {
+                return (
+                  <li key={user._id}>
+                    <img
+                      src={
+                        user.profilePicture
+                          ? PF + user.profilePicture
+                          : PF + "person/user.png"
+                      }
+                      alt="profile"
+                    />
+                    <p>
+                      {user.username}
+                    </p>
+                  </li>
+                )
+              })
+            }
+          </ul>
+        }
       </div>
       <div className="topbarRight">
         <div className="topbarLinks">
           <Link to="/">
             <span className="topbarLink" style={{ margin: "0 10px" }}>
-              Home
+              <MaterialIcon.MdHome size="1.7rem" />
             </span>
           </Link>
-          <span className="topbarLink" style={{ margin: "0 10px" }}>
-            Timeline
-          </span>
         </div>
         <div className="topbarIcons">
           <div className="topbarIconItem">

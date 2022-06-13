@@ -103,7 +103,7 @@ const Rightbar = ({ user }) => {
           </div>
         </div>
         <h4 className="rightBarTitle">User Friends</h4>
-        <div className="rightBarFollowings" style={{ border: "2px solid red" }}>
+        <div className="rightBarFollowings">
           {friends.map((friend, index) => (
             <Link
               to={`/profile/${friend.username}`}

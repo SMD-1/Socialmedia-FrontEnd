@@ -12,6 +12,7 @@
   color: aliceblue;
   z-index: 10;
 }
+
 .logo {
   font-size: 2rem;
   font-weight: 600;
@@ -19,23 +20,51 @@
   color: #fff;
   text-decoration: none;
 }
+
 .topbarCenter {
   display: flex;
   align-items: center;
   padding: 5px;
+  position: relative;
   border-radius: 5px;
   background: #8a84ff;
 }
+
 .topbarCenter .searchInput {
   max-width: 250px;
   padding: 5px 10px;
   border-radius: 5px;
   border: none;
 }
+
+.topbarCenter ul {
+  position: absolute;
+  border-radius: 10px;
+  top: 40px;
+  padding: 5px 10px;
+  width: 220px;
+  list-style: none;
+  position: absolute;
+  background: #8a84ff;
+  color: aliceblue;
+}
+
+.topbarCenter li {
+  display: flex;
+  align-items: center;
+  padding: 5px;
+}
+
+.topbarCenter p {
+  margin-left: 10px;
+  font-weight: bold;
+}
+
 .topbarRight {
   display: flex;
   align-items: center;
 }
+
 .topbarIconItem {
   margin: 0 10px;
   cursor: pointer;
@@ -43,6 +72,7 @@
   text-decoration: none;
   color: white;
 }
+
 .topbarIconBadge {
   display: flex;
   align-items: center;
@@ -58,11 +88,13 @@
   right: -5px;
   text-align: center;
 }
+
 .topbarIcons {
   display: flex;
   align-items: center;
   padding: 5px;
 }
+
 .topbarContainer img {
   display: flex;
   align-items: center;
@@ -72,9 +104,11 @@
   object-fit: cover;
   cursor: pointer;
 }
+
 Link {
   text-decoration: none;
 }
+
 .topbarLink {
   text-decoration: none;
   color: #fff;
