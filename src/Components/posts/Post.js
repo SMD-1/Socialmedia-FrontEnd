@@ -1,6 +1,6 @@
 import { useState, useEffect, useContext } from "react";
 import axios from "axios";
-import {prefix} from '../../apiconfig.js'
+import { prefix } from '../../apiconfig.js'
 import * as MaterialIcon from "react-icons/md";
 import { format } from "timeago.js";
 import { Link } from "react-router-dom";
@@ -22,8 +22,6 @@ const Post = ({ post }) => {
   useEffect(() => {
     const fetchUser = async () => {
       const res = await axios.get(`${prefix}users?userId=${post.userId}`);
-      console.log("👽", post.userId);
-      // console.log("user: ", res);
       setUser(res.data);
     };
     fetchUser();
@@ -79,13 +77,11 @@ const Post = ({ post }) => {
         <div className="postBottom">
           <div className="postBottomLeft">
             <MaterialIcon.MdThumbUp
-              // id="likeButton"
               className="postBottomIcon"
               color="#1D4ED8"
               onClick={likeHandler}
             />
             <MaterialIcon.MdFavorite
-              // id="loveButton"
               className="postBottomIcon"
               color="#E11D48"
               onClick={likeHandler}

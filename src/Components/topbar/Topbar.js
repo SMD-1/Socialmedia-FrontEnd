@@ -9,9 +9,6 @@ import axios from "axios";
 const Topbar = () => {
   const [query, setQuery] = useState("")
   const [allUsers, setAllUsers] = useState([]);
-  console.log(allUsers)
-  console.log(query);
-  // const PF = process.env.REACT_APP_PUBLIC_FOLDER;
   useEffect(() => {
     const getUsers = async () => {
       try {
@@ -24,7 +21,6 @@ const Topbar = () => {
     getUsers()
   }, [query])
   const { user } = useContext(AuthContext);
-  // console.log("topbar", user);
   const PF = process.env.REACT_APP_PUBLIC_FOLDER;
   return (
     <div className="topbarContainer">
@@ -47,19 +43,24 @@ const Topbar = () => {
             {
               allUsers.filter(user => user.username.toLowerCase().includes(query)).map((user) => {
                 return (
-                  <li key={user._id}>
-                    <img
-                      src={
-                        user.profilePicture
-                          ? PF + user.profilePicture
-                          : PF + "person/user.png"
-                      }
-                      alt="profile"
-                    />
-                    <p>
-                      {user.username}
-                    </p>
-                  </li>
+                  <>
+                    <li key={user._id}>
+                      <Link to={`/profile/${user.username}`}>
+                        <img
+                          src={
+                            user.profilePicture
+                              ? PF + user.profilePicture
+                              : PF + "person/user.png"
+                          }
+                          alt="profile"
+                        />
+                        <p>
+                          {user.username}
+                        </p>
+                      </Link>
+                    </li>
+                    <hr />
+                  </>
                 )
               })
             }

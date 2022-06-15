@@ -37,12 +37,24 @@
   border: none;
 }
 
+.topbarCenter a {
+  width: 100%;
+  text-decoration: none;
+  color: #fff;
+  display: flex;
+  align-items: center;
+}
+
 .topbarCenter ul {
   position: absolute;
   border-radius: 10px;
   top: 40px;
   padding: 5px 10px;
   width: 220px;
+  max-height: 250px;
+  overflow: hidden;
+  overflow-y: scroll;
+  scrollbar-width: none;
   list-style: none;
   position: absolute;
   background: #8a84ff;
@@ -51,8 +63,15 @@
 
 .topbarCenter li {
   display: flex;
-  align-items: center;
   padding: 5px;
+}
+
+.topbarCenter hr {
+  width: 100%;
+  margin: 0px;
+  padding: 0px;
+  border: none;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 .topbarCenter p {

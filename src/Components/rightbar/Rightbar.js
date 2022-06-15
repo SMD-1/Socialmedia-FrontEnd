@@ -8,6 +8,7 @@ import Online from "../online/Online";
 import { FaPlus, FaMinus } from "react-icons/fa";
 import { AuthContext } from "../../context/AuthContext";
 import "./rightbar.css";
+// import { saveAs } from "file-saver";
 
 const Rightbar = ({ user }) => {
   const PF = process.env.REACT_APP_PUBLIC_FOLDER;
@@ -32,6 +33,13 @@ const Rightbar = ({ user }) => {
     };
     getFriends();
   }, [currentUser]);
+
+  // const saveFile = () => {
+  //   saveAs(
+  //     "http://localhost:4000/images/person/sponsor.jpg",
+  //     "example.jpg"
+  //   );
+  // };
 
   const clickHandler = async () => {
     try {
@@ -63,6 +71,7 @@ const Rightbar = ({ user }) => {
         </div>
         <div className="sponsors">
           <img src={`${PF}person/sponsor.jpg`} alt="sponsor" />
+          {/* <button onClick={saveFile} >Download</button> */}
         </div>
         <h3 className="rightbarTitle">Online Friends</h3>
         <ul className="rightbarFriendList">
