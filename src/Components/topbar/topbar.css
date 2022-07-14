@@ -63,6 +63,7 @@
 
 .topbarCenter li {
   display: flex;
+  align-items: center;
   padding: 5px;
 }
 
@@ -72,6 +73,10 @@
   padding: 0px;
   border: none;
   border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.topbarCenter ul::-webkit-scrollbar {
+  display: none;
 }
 
 .topbarCenter p {

@@ -24,7 +24,7 @@ function App() {
             {user ? <Home /> : <Register />}
           </Route>
           <Route path="/profile/:username" exact>
-            <Profile />
+            {user ? <Profile /> : <Register />}
           </Route>
           <Route path="/login" exact>
             {user ? <Redirect to="/" /> : <Login />}

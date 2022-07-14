@@ -9,7 +9,6 @@ import { prefix } from "../../apiconfig";
 import { useParams } from "react-router";
 
 const Profile = () => {
-  const PF = process.env.REACT_APP_PUBLIC_FOLDER;
   const [user, setUser] = useState({});
   const username = useParams().username;
   // console.log(username.username);
@@ -18,7 +17,7 @@ const Profile = () => {
     const fetchUser = async () => {
       const res = await axios.get(`${prefix}users?username=${username}`);
       setUser(res.data);
-      // console.log("user in profile: ", res.data);
+      console.log("user in profile: ", res.data);
     };
     fetchUser();
   }, [username]);
@@ -35,8 +34,8 @@ const Profile = () => {
                 className="profileCoverImg"
                 src={
                   user.coverPicture
-                    ? PF + user.coverPicture
-                    : PF + "post/post3.jpg"
+                    ? `${prefix}images/${user.coverPicture}`
+                    : `${prefix}images/post/post3.jpg`
                 }
                 alt="banner"
               />
@@ -44,8 +43,8 @@ const Profile = () => {
                 className="profileUserImg"
                 src={
                   user.profilePicture
-                    ? PF + user.profilePicture
-                    : PF + "person/user.png"
+                    ? `${prefix}images/${user.profilePicture}`
+                    : `${prefix}images/person/user.png`
                 }
                 alt="profileImage"
               />

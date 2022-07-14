@@ -11,19 +11,17 @@ import "./rightbar.css";
 // import { saveAs } from "file-saver";
 
 const Rightbar = ({ user }) => {
-  const PF = process.env.REACT_APP_PUBLIC_FOLDER;
   const [friends, setFriends] = useState([]);
   const { user: currentUser, dispatch } = useContext(AuthContext);
-  const [Followed, setFollowed] = useState(
-    currentUser.followings.includes(user?.id)
+  const [following, setFollowing] = useState(
+    currentUser.followings.includes(user?._id)
   );
-  console.log("Followed", user ? user.username : " ");
-
+  // const [followers, setFollowers] = useState(currentUser.followers.includes(user?._id));
   useEffect(() => {
     const getFriends = async () => {
       try {
         const friendList = await axios.get(
-          prefix + "users/friends/" + currentUser._id
+          prefix + "users/friends/" + user._id
         );
         console.log("Friend List", friendList.data);
         setFriends(friendList.data);
@@ -32,7 +30,7 @@ const Rightbar = ({ user }) => {
       }
     };
     getFriends();
-  }, [currentUser]);
+  }, [user]);
 
   // const saveFile = () => {
   //   saveAs(
@@ -43,21 +41,21 @@ const Rightbar = ({ user }) => {
 
   const clickHandler = async () => {
     try {
-      if (Followed) {
-        await axios.put(`${prefix}users/${currentUser._id}/unfollow`, {
+      if (following) {
+        await axios.put(`${prefix}users/${user._id}/unfollow`, {
           userId: currentUser._id,
         });
-        dispatch({ type: "UNFOLLOW", payload: currentUser._id });
+        dispatch({ type: "UNFOLLOW", payload: user._id });
       } else {
-        await axios.put(`${prefix}users/${currentUser._id}/follow`, {
+        await axios.put(`${prefix}users/${user._id}/follow`, {
           userId: currentUser._id,
         });
-        dispatch({ type: "FOLLOW", payload: currentUser._id });
+        dispatch({ type: "FOLLOW", payload: user._id });
       }
     } catch (err) {
-      console.log(err);
+      console.log(err.message);
     }
-    setFollowed(!Followed);
+    setFollowing(!following);
   };
 
   const HomeRightBar = () => {
@@ -70,7 +68,7 @@ const Rightbar = ({ user }) => {
           </span>
         </div>
         <div className="sponsors">
-          <img src={`${PF}person/sponsor.jpg`} alt="sponsor" />
+          <img src={`${prefix}images/person/sponsor.jpg`} alt="sponsor" />
           {/* <button onClick={saveFile} >Download</button> */}
         </div>
         <h3 className="rightbarTitle">Online Friends</h3>
@@ -88,8 +86,8 @@ const Rightbar = ({ user }) => {
       <>
         {user.username !== currentUser.username && (
           <button className="rightBarFollowButton" onClick={clickHandler}>
-            {Followed ? "Unfollow" : "Follow"}
-            {Followed ? (
+            {following ? "Unfollow" : "Follow"}
+            {following ? (
               <FaMinus style={{ marginLeft: "5px" }} />
             ) : (
               <FaPlus style={{ marginLeft: "5px" }} />
@@ -123,8 +121,8 @@ const Rightbar = ({ user }) => {
                 <img
                   src={
                     friend.profilePicture
-                      ? PF + friend.profilePicture
-                      : PF + "person/user.png"
+                      ? `${prefix}images/${friend.profilePicture}`
+                      : `${prefix}images/person/user.png`
                   }
                   alt="friend"
                   className="rightBarFollowingImg"

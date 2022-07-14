@@ -1,6 +1,6 @@
 import { useState, useEffect, useContext } from "react";
 import axios from "axios";
-import { prefix } from '../../apiconfig.js'
+import { prefix } from "../../apiconfig.js";
 import * as MaterialIcon from "react-icons/md";
 import { format } from "timeago.js";
 import { Link } from "react-router-dom";
@@ -12,7 +12,6 @@ const Post = ({ post }) => {
   const [like, setLike] = useState(post.likes.length);
   const [isLiked, setIsLiked] = useState(false);
   const [user, setUser] = useState({});
-  const PF = process.env.REACT_APP_PUBLIC_FOLDER;
   const { user: currentUser } = useContext(AuthContext);
 
   useEffect(() => {
@@ -28,7 +27,9 @@ const Post = ({ post }) => {
   }, [post.userId]);
   const likeHandler = () => {
     try {
-      axios.put(prefix + "posts/" + post._id + "/like", { userId: currentUser._id });
+      axios.put(prefix + "posts/" + post._id + "/like", {
+        userId: currentUser._id,
+      });
     } catch (err) {
       console.log(err);
     }
@@ -46,8 +47,8 @@ const Post = ({ post }) => {
               <img
                 src={
                   user.profilePicture
-                    ? PF + user.profilePicture
-                    : PF + "person/user.png"
+                    ? `${prefix}images/${user.profilePicture}`
+                    : `${prefix}images/person/user.png`
                 }
                 alt="user-profile"
               />
@@ -69,7 +70,11 @@ const Post = ({ post }) => {
             <p> {post?.description} </p>
           </span>
           {post.img ? (
-            <img src={PF + post.img} alt="post" className="postImage" />
+            <img
+              src={`${prefix}images/${post.img}`}
+              alt="post"
+              className="postImage"
+            />
           ) : (
             ``
           )}

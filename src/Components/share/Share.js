@@ -7,7 +7,6 @@ import "./share.css";
 
 const Share = () => {
   const { user } = useContext(AuthContext);
-  const PF = process.env.REACT_APP_PUBLIC_FOLDER;
   const description = useRef();
   const [file, setFile] = useState(null);
 
@@ -49,8 +48,9 @@ const Share = () => {
           <img
             src={
               user.profilePicture
-                ? PF + user.profilePicture
-                : PF + "person/user.png"
+                ? `${prefix}images/${user.profilePicture}`
+                : `${prefix}images/person/user.png
+            `
             }
             alt="user-profile"
           />
