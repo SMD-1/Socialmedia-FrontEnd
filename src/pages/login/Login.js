@@ -1,6 +1,7 @@
 import { useContext, useRef } from "react";
 import { loginCall } from "../../apiCall";
 import { AuthContext } from "../../context/AuthContext";
+import { useHistory } from "react-router-dom";
 import "./login.css";
 
 const Login = () => {
@@ -8,6 +9,7 @@ const Login = () => {
   const email = useRef();
   const password = useRef();
   const { user, isFetching, dispatch } = useContext(AuthContext);
+  const history = useHistory();
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -16,6 +18,10 @@ const Login = () => {
       dispatch
     );
     console.log(password.current.value);
+  };
+
+  const onClick = () => {
+    history.push("/register");
   };
 
   console.log("user after login", user);
@@ -47,7 +53,9 @@ const Login = () => {
               {isFetching ? "Loading..." : "Login"}
             </button>
             <span className="forgotPass">Forgot Password ?</span>
-            <button className="createNewAcc">Create a new Account</button>
+            <button className="createNewAcc" onClick={onClick}>
+              Create a new Account
+            </button>
           </form>
         </div>
       </div>
