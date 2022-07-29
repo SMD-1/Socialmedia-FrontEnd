@@ -70,11 +70,7 @@ const Post = ({ post }) => {
             <p> {post?.description} </p>
           </span>
           {post.img ? (
-            <img
-              src={`${prefix}images/${post.img}`}
-              alt="post"
-              className="postImage"
-            />
+            <img src={post.img} alt="post" className="postImage" />
           ) : (
             ``
           )}

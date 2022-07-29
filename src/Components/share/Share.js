@@ -12,32 +12,31 @@ const Share = () => {
 
   const submitHandler = async (e) => {
     e.preventDefault();
-    const newPost = {
-      userId: user._id,
-      description: description.current.value,
-      img: "",
-    };
-    if (file) {
-      const formData = new FormData();
-      const fileName = file.name;
-      formData.append("file", file);
-      formData.append("name", fileName);
-      newPost.img = fileName;
-      console.log("New Post", newPost);
-      try {
-        const res = await axios.post(prefix + "upload", formData);
-        console.log(res);
-      } catch (err) {
-        console.log(err);
-      }
-    }
+    // const newPost = {
+    //   userId: user._id,
+    //   description: description.current.value,
+    //   img: "",
+    // };
 
+    const formData = new FormData();
+    formData.append("file", file);
+    formData.append("name", file?.name);
+    formData.append("userId", user._id);
+    formData.append("description", description.current.value);
+    // console.log("New Post", newPost);
     try {
-      await axios.post(prefix + "posts", newPost);
+      const res = await axios.post(prefix + "posts", formData);
       window.location.reload();
+      console.log(res);
     } catch (err) {
       console.log(err);
     }
+    // try {
+    //   await axios.post(prefix + "posts", newPost);
+    //   window.location.reload();
+    // } catch (err) {
+    //   console.log(err);
+    // }
   };
 
   // console.log("share", user);
