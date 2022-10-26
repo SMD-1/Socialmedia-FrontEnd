@@ -13,11 +13,13 @@ import {
 import { useContext } from "react";
 import { AuthContext } from "./context/AuthContext";
 import Messenger from "./pages/messenger/Messenger";
+import { ToastContainer } from "react-toastify";
 
 function App() {
   const { user } = useContext(AuthContext);
   return (
     <div className="App">
+      <ToastContainer />
       <Router>
         <Switch>
           <Route path="/" exact>
