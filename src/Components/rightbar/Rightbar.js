@@ -8,7 +8,6 @@ import Online from "../online/Online";
 import { FaPlus, FaMinus } from "react-icons/fa";
 import { AuthContext } from "../../context/AuthContext";
 import "./rightbar.css";
-// import { saveAs } from "file-saver";
 
 const Rightbar = ({ user }) => {
   const [friends, setFriends] = useState([]);
@@ -16,9 +15,6 @@ const Rightbar = ({ user }) => {
   const [following, setFollowing] = useState(
     currentUser.followings.includes(user?._id)
   );
-  // const [followers, setFollowers] = useState(currentUser.followers.includes(user?._id));
-  console.log("curr", currentUser);
-  console.log("length", currentUser.followings.length);
   useEffect(() => {
     const getFriends = async () => {
       try {
@@ -35,13 +31,6 @@ const Rightbar = ({ user }) => {
       getFriends();
     }
   }, [user, currentUser]);
-
-  // const saveFile = () => {
-  //   saveAs(
-  //     "http://localhost:4000/images/person/sponsor.jpg",
-  //     "example.jpg"
-  //   );
-  // };
 
   const clickHandler = async () => {
     try {

@@ -42,23 +42,21 @@ const Topbar = () => {
               .filter((user) => user.username.toLowerCase().includes(query))
               .map((user, index) => {
                 return (
-                  <>
-                    <Link to={`/profile/${user.username}`} key={index}>
-                      <li key={index}>
-                        <img
-                          src={
-                            user.profilePicture
-                              ? `${prefix}images/${user.profilePicture}`
-                              : `${prefix}images/person/user.png
+                  <div key={user._id}>
+                    <Link to={`/profile/${user.username}`}>
+                      <img
+                        src={
+                          user.profilePicture
+                            ? `${prefix}images/${user.profilePicture}`
+                            : `${prefix}images/person/user.png
                           `
-                          }
-                          alt="profile"
-                        />
-                        <p>{user.username}</p>
-                      </li>
+                        }
+                        alt="profile"
+                      />
+                      <p>{user.username}</p>
                     </Link>
                     <hr />
-                  </>
+                  </div>
                 );
               })}
           </ul>

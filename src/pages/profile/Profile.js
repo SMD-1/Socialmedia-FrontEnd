@@ -18,7 +18,6 @@ const Profile = () => {
     const fetchUser = async () => {
       const res = await axios.get(`${prefix}users?username=${username}`);
       setUser(res.data);
-      console.log("user in profile: ", res.data);
     };
     fetchUser();
   }, [username]);
