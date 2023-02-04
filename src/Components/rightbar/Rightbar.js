@@ -17,11 +17,13 @@ const Rightbar = ({ user }) => {
     currentUser.followings.includes(user?._id)
   );
   // const [followers, setFollowers] = useState(currentUser.followers.includes(user?._id));
+  console.log("curr", currentUser);
+  console.log("length", currentUser.followings.length);
   useEffect(() => {
     const getFriends = async () => {
       try {
         const friendList = await axios.get(
-          prefix + "users/friends/" + user._id
+          prefix + "users/friends/" + user?._id
         );
         console.log("Friend List", friendList.data);
         setFriends(friendList.data);
@@ -29,8 +31,10 @@ const Rightbar = ({ user }) => {
         console.log(err.message);
       }
     };
-    getFriends();
-  }, [user]);
+    if (currentUser.followings.length > 0 || currentUser.followers.length > 0) {
+      getFriends();
+    }
+  }, [user, currentUser]);
 
   // const saveFile = () => {
   //   saveAs(

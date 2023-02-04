@@ -44,7 +44,7 @@ const Topbar = () => {
                 return (
                   <>
                     <Link to={`/profile/${user.username}`} key={index}>
-                      <li>
+                      <li key={index}>
                         <img
                           src={
                             user.profilePicture

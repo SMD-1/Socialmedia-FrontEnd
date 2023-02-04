@@ -34,7 +34,7 @@ const Register = () => {
       try {
         const newUser = await axios.post(prefix + "auth/register", user);
         console.log(newUser);
-        toast("Sussssses", {
+        toast("Registered Successfully!", {
           position: "top-right",
           type: "success",
           theme: "dark",
