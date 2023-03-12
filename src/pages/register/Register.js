@@ -80,7 +80,7 @@ const Register = () => {
       </div>
       <div className="loginForm">
         <form className="loginBox" onSubmit={submitHandler}>
-          <label for="username">Username</label>
+          <label htmlFor="username">Username</label>
           <input
             id="username"
             type="text"
@@ -89,7 +89,7 @@ const Register = () => {
             ref={username}
             // required
           />
-          <label for="email">Email</label>
+          <label htmlFor="email">Email</label>
           <input
             id="email"
             className="loginInput"
@@ -98,7 +98,7 @@ const Register = () => {
             ref={email}
             // required
           />
-          <label for="password">Password</label>
+          <label htmlFor="password">Password</label>
           <input
             id="password"
             className="loginInput"
@@ -108,7 +108,7 @@ const Register = () => {
             minLength="6"
             // required
           />
-          <label for="confpass">Confirm Password</label>
+          <label htmlFor="confpass">Confirm Password</label>
           <input
             id="confpass"
             className="loginInput"

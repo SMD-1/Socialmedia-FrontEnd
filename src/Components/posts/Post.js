@@ -35,8 +35,6 @@ const Post = ({ post }) => {
     }
     setLike(isLiked ? like - 1 : like + 1);
     setIsLiked(!isLiked);
-    // document.getElementById("likeButton").style.color = "#1D4ED8";
-    // document.getElementById("loveButton").style.color = "#E11D48";
   };
   return (
     <div className="post">
@@ -77,16 +75,18 @@ const Post = ({ post }) => {
         </div>
         <div className="postBottom">
           <div className="postBottomLeft">
-            <MaterialIcon.MdThumbUp
-              className="postBottomIcon"
-              color="#1D4ED8"
-              onClick={likeHandler}
-            />
-            <MaterialIcon.MdFavorite
-              className="postBottomIcon"
-              color="#E11D48"
-              onClick={likeHandler}
-            />
+            {isLiked ? (
+              <MaterialIcon.MdThumbUp
+                className="postBottomIcon"
+                color="#1D4ED8"
+                onClick={likeHandler}
+              />
+            ) : (
+              <MaterialIcon.MdThumbUp
+                className="postBottomIcon"
+                onClick={likeHandler}
+              />
+            )}
             <span className="likeCount">{like} people liked it</span>
           </div>
           <div className="postBottomRight">

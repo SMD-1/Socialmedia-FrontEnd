@@ -47,7 +47,7 @@ const Login = () => {
         </div>
         <div className="loginForm">
           <form className="loginBox" onSubmit={submitHandler}>
-            <label for="username">Email</label>
+            <label htmlFor="username">Email</label>
             <input
               id="email"
               className="loginInput"
@@ -56,7 +56,7 @@ const Login = () => {
               required
               ref={email}
             />
-            <label for="password">Password</label>
+            <label htmlFor="password">Password</label>
             <input
               id="password"
               className="loginInput"

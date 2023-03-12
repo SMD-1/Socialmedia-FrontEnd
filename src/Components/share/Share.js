@@ -23,7 +23,6 @@ const Share = () => {
     formData.append("name", file?.name);
     formData.append("userId", user._id);
     formData.append("description", description.current.value);
-    // console.log("New Post", newPost);
     try {
       const res = await axios.post(prefix + "posts", formData);
       window.location.reload();
@@ -31,12 +30,6 @@ const Share = () => {
     } catch (err) {
       console.log(err);
     }
-    // try {
-    //   await axios.post(prefix + "posts", newPost);
-    //   window.location.reload();
-    // } catch (err) {
-    //   console.log(err);
-    // }
   };
 
   // console.log("share", user);
