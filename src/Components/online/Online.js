@@ -2,7 +2,7 @@ import "./online.css";
 import { prefix } from "../../apiconfig";
 
 const Online = ({ user }) => {
-  const { username, profilePicture } = user;
+  const { username } = user;
 
   return (
     <li className="rightbarFriend">
