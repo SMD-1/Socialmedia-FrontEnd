@@ -27,7 +27,7 @@ const Rightbar = ({ user }) => {
         console.log(err.message);
       }
     };
-    if (currentUser.followings.length > 0 || currentUser.followers.length > 0) {
+    if (currentUser.followings.length > 0) {
       getFriends();
     }
   }, [user, currentUser]);
