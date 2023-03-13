@@ -114,7 +114,7 @@ const Rightbar = ({ user }) => {
                 <img
                   src={
                     friend.profilePicture
-                      ? `${prefix}images/${friend.profilePicture}`
+                      ? friend.profilePicture
                       : `${prefix}images/person/user.png`
                   }
                   alt="friend"

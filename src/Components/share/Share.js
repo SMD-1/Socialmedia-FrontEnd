@@ -40,9 +40,8 @@ const Share = () => {
           <img
             src={
               user.profilePicture
-                ? `${prefix}images/${user.profilePicture}`
-                : `${prefix}images/person/user.png
-            `
+                ? user.profilePicture
+                : `${prefix}images/person/user.png`
             }
             alt="user-profile"
           />

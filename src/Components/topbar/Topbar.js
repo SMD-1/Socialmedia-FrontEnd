@@ -47,9 +47,8 @@ const Topbar = () => {
                       <img
                         src={
                           user.profilePicture
-                            ? `${prefix}images/${user.profilePicture}`
-                            : `${prefix}images/person/user.png
-                          `
+                            ? user.profilePicture
+                            : `${prefix}images/person/user.png`
                         }
                         alt="profile"
                       />
@@ -90,7 +89,7 @@ const Topbar = () => {
           <img
             src={
               user.profilePicture
-                ? `${prefix}images/${user.profilePicture}`
+                ? user.profilePicture
                 : `${prefix}images/person/user.png`
             }
             alt="profile"
