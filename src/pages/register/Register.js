@@ -24,7 +24,16 @@ const Register = () => {
   const submitHandler = async (e) => {
     e.preventDefault();
     if (passwordAgain.current.value !== password.current.value) {
-      password.current.setCustomValidity("Passwords don't match");
+      return toast("Password and Confirm password doesn't match", {
+        position: "top-right",
+        type: "warning",
+        theme: "dark",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+      });
     } else {
       const user = {
         username: username.current.value,
@@ -34,16 +43,6 @@ const Register = () => {
       try {
         const newUser = await axios.post(prefix + "auth/register", user);
         console.log(newUser);
-        toast("Registered Successfully!", {
-          position: "top-right",
-          type: "success",
-          theme: "dark",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-        });
         loginCall(
           {
             email: email.current.value,
@@ -51,11 +50,19 @@ const Register = () => {
           },
           dispatch
         );
-        // TODO: redirect to login page
-        // history.push("/login");
+        toast("Registered Successfully!", {
+          position: "top-right",
+          type: "success",
+          theme: "dark",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+        });
       } catch (err) {
         // yahan ayega error aur hoga toastify
-        toast("Couldn't register! Please try again ", {
+        toast(err.message, {
           position: "top-right",
           type: "error",
           theme: "dark",
@@ -65,7 +72,7 @@ const Register = () => {
           pauseOnHover: true,
           draggable: true,
         });
-        console.log(err);
+        // console.log(err.message);
       }
     }
   };
@@ -87,7 +94,7 @@ const Register = () => {
             placeholder="username"
             className="loginInput"
             ref={username}
-            // required
+            required
           />
           <label htmlFor="email">Email</label>
           <input
@@ -96,7 +103,7 @@ const Register = () => {
             type="email"
             placeholder="Email"
             ref={email}
-            // required
+            required
           />
           <label htmlFor="password">Password</label>
           <input
@@ -106,7 +113,6 @@ const Register = () => {
             placeholder="Password"
             ref={password}
             minLength="6"
-            // required
           />
           <label htmlFor="confpass">Confirm Password</label>
           <input
@@ -115,7 +121,6 @@ const Register = () => {
             type="password"
             placeholder="Confirm Password"
             ref={passwordAgain}
-            // required
           />
           <button className="loginButton" type="submit">
             Signup

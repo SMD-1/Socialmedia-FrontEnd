@@ -2,7 +2,7 @@ import { useContext, useRef } from "react";
 import { loginCall } from "../../apiCall";
 import { AuthContext } from "../../context/AuthContext";
 import { useHistory } from "react-router-dom";
-import { toast } from "react-toastify";
+// import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "../register/register.css";
 
@@ -10,7 +10,7 @@ const Login = () => {
   // here we can also use useState
   const email = useRef();
   const password = useRef();
-  const { user, isFetching, dispatch } = useContext(AuthContext);
+  const { isFetching, dispatch } = useContext(AuthContext);
   const history = useHistory();
 
   const submitHandler = (e) => {
@@ -25,19 +25,6 @@ const Login = () => {
   const onClick = () => {
     history.push("/register");
   };
-  const diffToast = () => {
-    toast.warn("🦄 Wow so easy!", {
-      position: "top-right",
-      autoClose: 3000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-    });
-  };
-
-  console.log("user after login", user);
   return (
     <>
       <div className="login">
@@ -66,11 +53,7 @@ const Login = () => {
               required
               ref={password}
             />
-            <button
-              className="loginButton"
-              disabled={isFetching}
-              onClick={diffToast}
-            >
+            <button className="loginButton" disabled={isFetching}>
               {isFetching ? "Loading..." : "Login"}
             </button>
             {/* <span className="forgotPass">Forgot Password ?</span> */}
