@@ -8,6 +8,7 @@ import axios from "axios";
 import { prefix } from "../../apiconfig";
 import { useParams } from "react-router";
 import { AuthContext } from "../../context/AuthContext";
+import { Link } from "react-router-dom";
 
 const Profile = () => {
   const [user, setUser] = useState({});
@@ -48,7 +49,9 @@ const Profile = () => {
                 }
                 alt="profileImage"
               />
-              <button onClick={logout}> Logout</button>
+              <Link to="/login">
+                <button onClick={logout}> Logout</button>
+              </Link>
             </div>
             <div className="profileInfo">
               <h4 className="profileInfoName">{user.username}</h4>
